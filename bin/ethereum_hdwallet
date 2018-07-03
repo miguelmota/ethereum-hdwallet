@@ -68,18 +68,19 @@ if (flags.index || flags.i) {
   }
 }
 
-var properties = (flags.properties || flags.p || 'address').split(',').map(x => x.trim().toLowerCase())
+const properties = (flags.properties || flags.p || 'address').split(',').map(x => x.trim().toLowerCase())
 
-var headerKeys = {
+const headerKeys = {
   address: 'address',
   private: 'private key',
   public: 'public key',
   hdpath: 'hd path'
 }
-var props = []
+
+const props = []
 
 for (var i = 0; i < properties.length; i++) {
-  var property = properties[i]
+  const property = properties[i]
   var prop = null
   if (/address|(public.*address)/.test(property)) {
     prop = 'address'
