@@ -93,6 +93,7 @@ Display the account address derived from a range of account indexes:
 ```bash
 $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10
 
+account address
 5       0x1c255db352e8b3cc16efd721c61d7b1b5952b2bb
 6       0x1a41029aeb54a8c09211539b92b2a3fd92ea8270
 7       0x54c0897a1e281b107eee25d4f8eee5f6ae13f9d9
