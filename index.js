@@ -26,6 +26,9 @@ class HDWallet {
       tx.sign(priv)
       return tx.serialize()
     }
+    wallet.hdpath = () => {
+      return this._hdpath + idx
+    }
 
     return wallet
   }

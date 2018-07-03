@@ -32,6 +32,8 @@ var HDWallet = function () {
   }, {
     key: 'derive',
     value: function derive(idx) {
+      var _this = this;
+
       var wallet = this._hdwallet.derivePath(this._hdpath + idx).getWallet();
       wallet.signTransaction = function (txParams) {
         txParams.from = txParams.from || '0x' + wallet.getAddress().toString('hex');
@@ -39,6 +41,9 @@ var HDWallet = function () {
         var priv = wallet.getPrivateKey();
         tx.sign(priv);
         return tx.serialize();
+      };
+      wallet.hdpath = function () {
+        return _this._hdpath + idx;
       };
 
       return wallet;

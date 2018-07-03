@@ -50,6 +50,89 @@ const hdwallet = new HDWallet(mnemonic, hdpath)
 console.log(hdwallet.hdpath()) // m/44'/100'/0'/0/
 ```
 
+## CLI
+
+### Install
+
+```bash
+npm install ethereum-hdwallet -g
+```
+
+### Usage
+
+```bash
+$ ethereum_hdwallet --help
+
+  Usage
+$ ethereum_hdwallet [options]
+
+  Options
+    -i, --index Account Index (e.g. 4)
+    -p, --property Property to display (e.g. address, publickey, privatekey, hdpath)
+    -r, --range Account Index Range (e.g 1-100)
+    -m, --mnemonic Mnemonic
+
+  Examples
+    $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab
+ove argue embrace heavy" -r 0-10
+```
+
+### Examples
+
+Display the address at a particular account index:
+
+```bash
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 4
+╔═══════════════╤════════════════════════════════════════════╗
+║ account index │ address                                    ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 4             │ 0x32f48bf54dbbfce73172e69fe563c130d536cd5f ║
+╚═══════════════╧════════════════════════════════════════════╝
+```
+
+Display the account address derived from a range of account indexes:
+
+```bash
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10
+╔═══════════════╤════════════════════════════════════════════╗
+║ account index │ address                                    ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 5             │ 0x1c255db352e8b3cc16efd721c61d7b1b5952b2bb ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 6             │ 0x1a41029aeb54a8c09211539b92b2a3fd92ea8270 ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 7             │ 0x54c0897a1e281b107eee25d4f8eee5f6ae13f9d9 ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 8             │ 0x3d503e7c3799ab9478b6c04623275fdc0ad09b1e ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 9             │ 0x2d69b45301b9b3e01c4797c7a48bbc7e7f9b355b ║
+╟───────────────┼────────────────────────────────────────────╢
+║ 10            │ 0x5e611cbdd26f78a4c837759378a7b41caa17b41b ║
+╚═══════════════╧════════════════════════════════════════════╝
+```
+
+Display the private key of the account:
+
+```bash
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p privatekey
+╔═══════════════╤══════════════════════════════════════════════════════════════════╗
+║ account index │ private key                                                      ║
+╟───────────────┼──────────────────────────────────────────────────────────────────╢
+║ 3             │ f466f6f4d2d61a11eddd10eb80aae500c7601539d08d1d55f9e5efe25ecf95bc ║
+╚═══════════════╧══════════════════════════════════════════════════════════════════╝
+```
+
+Display the HD path of the account:
+
+```bash
+$ bin/ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p hdpath
+╔═══════════════╤══════════════════╗
+║ account index │ hd path          ║
+╟───────────────┼──────────────────╢
+║ 3             │ m/44'/60'/0'/0/3 ║
+╚═══════════════╧══════════════════╝
+```
+
 ## Test
 
 ```bash
