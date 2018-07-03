@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { table } = require('table')
+const { table, getBorderCharacters } = require('table')
 const meow = require('meow')
 const HDWallet = require('../')
 
@@ -84,7 +84,7 @@ if (/address|(public.*address)/.test(property)) {
   prop = 'hdpath'
 }
 
-const result = [['account index', properties[prop]]]
+const result = [['account', properties[prop]]]
 
 for (var i = start; i < end; i++) {
   const wallet = hdwallet.derive(i)
@@ -104,4 +104,15 @@ for (var i = start; i < end; i++) {
   ])
 }
 
-console.log(table(result))
+console.log(table(result, {
+  border: getBorderCharacters('void'),
+  columnDefault: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 1
+  },
+  drawHorizontalLine: () => {
+    return false
+  }
+}))

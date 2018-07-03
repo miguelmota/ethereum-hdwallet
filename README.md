@@ -83,54 +83,45 @@ Display the address at a particular account index:
 
 ```bash
 $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 4
-╔═══════════════╤════════════════════════════════════════════╗
-║ account index │ address                                    ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 4             │ 0x32f48bf54dbbfce73172e69fe563c130d536cd5f ║
-╚═══════════════╧════════════════════════════════════════════╝
+
+account address
+4       0x32f48bf54dbbfce73172e69fe563c130d536cd5f
 ```
 
 Display the account address derived from a range of account indexes:
 
 ```bash
 $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10
-╔═══════════════╤════════════════════════════════════════════╗
-║ account index │ address                                    ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 5             │ 0x1c255db352e8b3cc16efd721c61d7b1b5952b2bb ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 6             │ 0x1a41029aeb54a8c09211539b92b2a3fd92ea8270 ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 7             │ 0x54c0897a1e281b107eee25d4f8eee5f6ae13f9d9 ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 8             │ 0x3d503e7c3799ab9478b6c04623275fdc0ad09b1e ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 9             │ 0x2d69b45301b9b3e01c4797c7a48bbc7e7f9b355b ║
-╟───────────────┼────────────────────────────────────────────╢
-║ 10            │ 0x5e611cbdd26f78a4c837759378a7b41caa17b41b ║
-╚═══════════════╧════════════════════════════════════════════╝
+
+5       0x1c255db352e8b3cc16efd721c61d7b1b5952b2bb
+6       0x1a41029aeb54a8c09211539b92b2a3fd92ea8270
+7       0x54c0897a1e281b107eee25d4f8eee5f6ae13f9d9
+8       0x3d503e7c3799ab9478b6c04623275fdc0ad09b1e
+9       0x2d69b45301b9b3e01c4797c7a48bbc7e7f9b355b
+10      0x5e611cbdd26f78a4c837759378a7b41caa17b41b
 ```
 
-Display the private key of the account:
+Display the private keys of accounts:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p privatekey
-╔═══════════════╤══════════════════════════════════════════════════════════════════╗
-║ account index │ private key                                                      ║
-╟───────────────┼──────────────────────────────────────────────────────────────────╢
-║ 3             │ f466f6f4d2d61a11eddd10eb80aae500c7601539d08d1d55f9e5efe25ecf95bc ║
-╚═══════════════╧══════════════════════════════════════════════════════════════════╝
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10 3 -p privatekey
+
+account private key
+5       1a69b812ca32e38bcac5197a63f6c1a1fcb6ac202e524382565cef16f1b3c84c
+6       83d5a75675cc8f1be09c7d4189117fe33ee3f09d1f9b5783140f03016a35b132
+7       526db1890baf94e82162f17f25ad769eb7f981272d8d99c527ea1af443c2d0cc
+8       cae7ce30e8e07507988d43ad8907edea2fd23f848fb1b8522dee53cac43a825f
+9       7525a4c5f03fb0b22fd88862e23833d62719b609e32a9264f6e437d56520d375
+10      9974334c5b8fc190302e93bc0e233709192f89fb2a7eeaf1d2f877cd3ae24262
 ```
 
 Display the HD path of the account:
 
 ```bash
 $ bin/ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p hdpath
-╔═══════════════╤══════════════════╗
-║ account index │ hd path          ║
-╟───────────────┼──────────────────╢
-║ 3             │ m/44'/60'/0'/0/3 ║
-╚═══════════════╧══════════════════╝
+
+account hd path
+3       m/44'/60'/0'/0/3
 ```
 
 ## Test
