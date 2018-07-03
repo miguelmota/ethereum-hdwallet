@@ -1,7 +1,7 @@
 const HDWallet = require('../')
 const mnemonic = 'tag volcano eight thank tide danger coast health above argue embrace heavy'
 
-const hdwallet = new HDWallet(mnemonic);
+const hdwallet = new HDWallet(mnemonic)
 
 console.log(hdwallet.hdpath())
 
