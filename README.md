@@ -68,9 +68,10 @@ $ ethereum_hdwallet [options]
 
   Options
     -i, --index Account Index (e.g. 4)
-    -p, --property Property to display (e.g. address, publickey, privatekey, hdpath)
+    -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)
     -r, --range Account Index Range (e.g 1-100)
     -m, --mnemonic Mnemonic
+    -h, --hdpath HD Path
 
   Examples
     $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab
@@ -123,6 +124,29 @@ $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above a
 
 account hd path
 3       m/44'/60'/0'/0/3
+```
+
+Use a custom HD path:
+
+```bash
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -h "m/44'/100'/0'/0/0" -r 0-3
+
+account address
+0       0x48b9aadfa2049e0f2ecbffcbe36d82054bcb08eb
+1       0xfb66c77f919f460e420bc5817529c0df418c7744
+2       0x8716c0a82f11d3bfea470e5764f251ba7c9f4b41
+```
+
+```bash
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -p address,hdpath -r 0-5
+
+account address                                    hd path
+0       0xc49926c4124cee1cba0ea94ea31a6c12318df947 m/44'/60'/0'/0/0
+1       0x8230645ac28a4edd1b0b53e7cd8019744e9dd559 m/44'/60'/0'/0/1
+2       0x65c150b7ef3b1adbb9cb2b8041c892b15edde05a m/44'/60'/0'/0/2
+3       0x1aebbe69459b80d4975259378577bc01d2924cf4 m/44'/60'/0'/0/3
+4       0x32f48bf54dbbfce73172e69fe563c130d536cd5f m/44'/60'/0'/0/4
+5       0x1c255db352e8b3cc16efd721c61d7b1b5952b2bb m/44'/60'/0'/0/5
 ```
 
 ## Test
