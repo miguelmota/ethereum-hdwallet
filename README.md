@@ -118,7 +118,7 @@ account private key
 Display the HD path of the account:
 
 ```bash
-$ bin/ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p hdpath
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p hdpath
 
 account hd path
 3       m/44'/60'/0'/0/3
