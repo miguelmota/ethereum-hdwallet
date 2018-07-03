@@ -16,13 +16,13 @@ const HDWallet = require('ethereum-hdwallet')
 const mnemonic = 'tag volcano eight thank tide danger coast health above argue embrace heavy'
 
 const hdwallet = new HDWallet(mnemonic)
+console.log(hdwallet.hdpath()) // m/44'/60'/0'/0/
 ```
 
 Deriving wallets given account index
 
 ```js
 const hdwallet = new HDWallet(mnemonic)
-console.log(hdwallet.hdpath()) // m/44'/60'/0'/0/
 
 console.log('0x' + hdwallet.derive(0).getAddress().toString('hex')) // 0xc49926c4124cee1cba0ea94ea31a6c12318df947
 console.log(hdwallet.derive(0).getPrivateKey().toString('hex')) // 63e21d10fd50155dbba0e7d3f7431a400b84b4c2ac1ee38872f82448fe3ecfb9
