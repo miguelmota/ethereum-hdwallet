@@ -137,6 +137,8 @@ account address
 2       0x8716c0a82f11d3bfea470e5764f251ba7c9f4b41
 ```
 
+Display multiple properties:
+
 ```bash
 $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -p address,hdpath -r 0-5
 
