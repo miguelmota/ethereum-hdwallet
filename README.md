@@ -18,7 +18,7 @@ const hdwallet = new HDWallet(mnemonic)
 console.log(hdwallet.hdpath()) // m/44'/60'/0'/0/
 ```
 
-Deriving wallets given account index
+Deriving wallets given account index:
 
 ```js
 const hdwallet = new HDWallet(mnemonic)
@@ -46,7 +46,7 @@ console.log(signedTx.toString('hex')) // 0xf85d808080940000000000000000000000000
 The default HD path is `m/44'/60'/0'/0/` but you may pass a custom path to the constructor:
 
 ```js
-const hdwallet = new HDWallet(mnemonic, hdpath);
+const hdwallet = new HDWallet(mnemonic, hdpath)
 console.log(hdwallet.hdpath()) // m/44'/100'/0'/0/
 ```
 
