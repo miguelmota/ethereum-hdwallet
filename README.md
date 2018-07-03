@@ -14,7 +14,6 @@ npm install ethereum-hdwallet
 const HDWallet = require('ethereum-hdwallet')
 
 const mnemonic = 'tag volcano eight thank tide danger coast health above argue embrace heavy'
-
 const hdwallet = new HDWallet(mnemonic)
 console.log(hdwallet.hdpath()) // m/44'/60'/0'/0/
 ```
