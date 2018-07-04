@@ -153,6 +153,15 @@ account address                                    hd path
 5       0x1c255db352e8b3cc16efd721c61d7b1b5952b2bb m/44'/60'/0'/0/5
 ```
 
+Pipe mnemonic:
+
+```bash
+$ echo "tag volcano eight thank tide danger coast health above argue embrace heavy" | ethereum_hdwallet -i 0
+
+account address
+0       0xc49926c4124cee1cba0ea94ea31a6c12318df947
+```
+
 ## Test
 
 ```bash
