@@ -1,10 +1,10 @@
 {
   "name": "ethereum-hdwallet",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "ethereum-hdwallet",
   "main": "dist/index.js",
   "bin": {
-    "ethereum_hdwallet": "bin/ethereum-hdwallet"
+    "ethereum_hdwallet": "bin/ethereum_hdwallet"
   },
   "scripts": {
     "test": "tape ./test/index.js",
