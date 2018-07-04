@@ -46,8 +46,9 @@ console.log(signedTx.toString('hex')) // 0xf85d808080940000000000000000000000000
 The default HD path is `m/44'/60'/0'/0/` but you may pass a custom path to the constructor:
 
 ```js
+const hdpath = `m/44'/60'/20'/0/`
 const hdwallet = new HDWallet(mnemonic, hdpath)
-console.log(hdwallet.hdpath()) // m/44'/100'/0'/0/
+console.log(hdwallet.hdpath()) // m/44'/100'/20'/0/
 ```
 
 ## CLI
@@ -129,12 +130,13 @@ account hd path
 Use a custom HD path:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -h "m/44'/100'/0'/0/0" -r 0-3
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -h "m/44'/60'/20'/0/0" -r 0-3
 
 account address
-0       0x48b9aadfa2049e0f2ecbffcbe36d82054bcb08eb
-1       0xfb66c77f919f460e420bc5817529c0df418c7744
-2       0x8716c0a82f11d3bfea470e5764f251ba7c9f4b41
+0       0xba59f66b853f1acb242bcc57ef188754fc79434b
+1       0xbf4cfeb783b913c0ed1710f00e9ae1844d597c86
+2       0x62b6ffac78674392e0c30ec042636e22907fbcd2
+3       0xce8bf9293cf5c4e9ecb50aa8f9e42adf568ae356
 ```
 
 Display multiple properties:
@@ -156,6 +158,14 @@ account address                                    hd path
 ```bash
 npm test
 ```
+
+## FAQ
+
+- Q: How do I generate a random mnemonic?
+  - A: Use the [big39](https://github.com/bitcoinjs/bip39) library for generating mnemonic.
+
+- Q: Why is the default mnemonic ``?
+  - A: See [this EIP](https://github.com/ethereum/EIPs/issues/85).
 
 ## License
 
