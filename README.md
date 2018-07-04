@@ -162,9 +162,9 @@ npm test
 ## FAQ
 
 - Q: How do I generate a random mnemonic?
-  - A: Use the [big39](https://github.com/bitcoinjs/bip39) library for generating mnemonic.
+  - A: Use the [big39](https://github.com/bitcoinjs/bip39) library for generating mnemonics.
 
-- Q: Why is the default mnemonic ``?
+- Q: Why is the default HD path `44'/60'/0'/0`?
   - A: See [this EIP](https://github.com/ethereum/EIPs/issues/85).
 
 ## License
