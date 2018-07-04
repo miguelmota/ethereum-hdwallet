@@ -52,7 +52,7 @@ const hdwallet = new HDWallet(mnemonic, hdpath)
 var start = 0
 var end = 10
 
-if (flags.index || flags.i) {
+if (flags.index != undefined || flags.i != undefined) {
   start = flags.index || flags.i
   end = start + 1
 } else if (flags.range || flags.r) {
@@ -82,13 +82,13 @@ const props = []
 for (var i = 0; i < properties.length; i++) {
   const property = properties[i]
   var prop = null
-  if (/address|(public.*address)/.test(property)) {
+  if (/address|(public.*address)|addr/.test(property)) {
     prop = 'address'
-  } else if (/private/.test(property)) {
+  } else if (/private|priv/.test(property)) {
     prop = 'private'
-  } else if (/public/.test(property)) {
+  } else if (/public|pub/.test(property)) {
     prop = 'public'
-  } else if (/hdpath/.test(property)) {
+  } else if (/hdpath|hd/.test(property)) {
     prop = 'hdpath'
   }
 
