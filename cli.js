@@ -55,7 +55,7 @@ if (process.stdin) {
     content += buf.toString()
   })
   setTimeout(() => {
-    options.mnemonic = (content || options.mnemonic).trim()
+    options.mnemonic = (content || options.mnemonic || '').trim()
     run(options)
     process.exit(0)
   }, 10)
