@@ -1,6 +1,6 @@
 {
   "name": "ethereum-hdwallet",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "ethereum-hdwallet",
   "main": "dist/index.js",
   "bin": {
