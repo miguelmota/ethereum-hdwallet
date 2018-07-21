@@ -102,7 +102,7 @@ _archive
 uploads
 tmp
 /coverage
-.nyc_output
+.nyc_output/
 
 # Files to ignore #
 #####################
