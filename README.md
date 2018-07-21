@@ -2,7 +2,7 @@
 
 > Ethereum HD Wallet derivations from mnemonic
 
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE.md) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE.md) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet) [![Coverage Status](https://coveralls.io/repos/github/miguelmota/ethereum-hdwallet/badge.svg?branch=master)](https://coveralls.io/github/miguelmota/ethereum-hdwallet?branch=master)
 
 ## Install
 
