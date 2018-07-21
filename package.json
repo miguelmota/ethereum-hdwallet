@@ -7,7 +7,8 @@
     "ethereum_hdwallet": "bin/ethereum_hdwallet"
   },
   "scripts": {
-    "test": "tape ./test/index.js",
+    "coverage": "node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "test": "./node_modules/nyc/bin/nyc.js --reporter=html --reporter=text tape ./test/index.js",
     "build": "babel index.js --presets babel-preset-es2015 --out-dir dist/",
     "build:cli": "babel cli.js --presets babel-preset-es2015 --out-dir dist/"
   },

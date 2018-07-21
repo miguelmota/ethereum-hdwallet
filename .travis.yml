@@ -7,4 +7,7 @@ before_script:
   - npm install
 
 script:
-  - node_modules/nyc/bin/nyc.js npm test && node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/.bin/coveralls
+  - npm test
+
+after_success:
+  - npm coverage
