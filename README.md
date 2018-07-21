@@ -83,6 +83,7 @@ $ ethereum_hdwallet [options]
     -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)
     -r, --range Account Index Range (e.g 1-100)
     -m, --mnemonic Mnemonic
+    -s, --seed Seed in hex format
     -h, --hdpath HD Path
 
   Examples
