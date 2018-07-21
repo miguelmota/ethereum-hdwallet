@@ -101,6 +101,7 @@ _test
 _archive
 uploads
 tmp
+/coverage
 
 # Files to ignore #
 #####################
