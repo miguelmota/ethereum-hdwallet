@@ -10,4 +10,4 @@ script:
   - npm test
 
 after_success:
-  - npm coverage
+  - npm run coverage
