@@ -2,6 +2,8 @@
 
 > Ethereum HD Wallet derivations from mnemonic
 
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE.md) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet)
+
 ## Install
 
 ```bash
@@ -24,7 +26,7 @@ Creating a new HD wallet from a seed:
 
 ```js
 const seed = Buffer.from('efea201152e37883bdabf10b28fdac9c146f80d2e161a544a7079d2ecc4e65948a0d74e47e924f26bf35aaee72b24eb210386bcb1deda70ded202a2b7d1a8c2e', 'hex')
-const hdwalletS = HDWallet.fromSeed(seed)
+const hdwallet= HDWallet.fromSeed(seed)
 console.log(`0x${hdwallet.derive(`m/44'/60'/0'/0/0`).getAddress().toString('hex')}`) // 0xc49926c4124cee1cba0ea94ea31a6c12318df947
 ```
 
@@ -39,8 +41,7 @@ console.log(`0x${hdwallet.derive(`m/44'/60'/0'/0/0`).getAddress().toString('hex'
 Deriving wallets given account index:
 
 ```js
-const hdwallet = new HDWallet(mnemonic)
-
+const hdwallet = HDWallet.fromMnemonic(mnemonic)
 const mywallet = hdwallet.derive(`m/44'/60'/0'/0`)
 console.log(`0x${mywallet.derive(1).getAddress().toString('hex')}`) // 0x8230645ac28a4edd1b0b53e7cd8019744e9dd559
 console.log(`0x${mywallet.derive(2).getAddress().toString('hex')}`) // 0x65c150b7ef3b1adbb9cb2b8041c892b15edde05a
@@ -51,6 +52,7 @@ console.log(`0x${mywallet.derive(3).hdpath()}`) // m/44'/60'/0'/0/3
 Signing transaction with a wallet:
 
 ```js
+const hdwallet = HDWallet.fromMnemonic(mnemonic)
 const signedRawTx = hdwallet.derive(`m/44'/60'/0'/0/0`).signTransaction({
   to: '0x0000000000000000000000000000000000000000',
   value: '0x0',
