@@ -8,49 +8,71 @@ var bip39 = require('bip39');
 var hdkey = require('ethereumjs-wallet/hdkey');
 var Transaction = require('ethereumjs-tx');
 
-var HDWallet = function () {
-  function HDWallet(mnemonic) {
-    var hdpath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'm/44\'/60\'/0\'/0/';
+var Wallet = function () {
+  function Wallet(seed) {
+    var hdpath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
-    _classCallCheck(this, HDWallet);
+    _classCallCheck(this, Wallet);
 
-    this._mnemonic = mnemonic;
-    this._hdwallet = hdkey.fromMasterSeed(bip39.mnemonicToSeed(mnemonic));
-    this._hdpath = hdpath;
+    this.__hdwallet = hdkey.fromMasterSeed(seed);
+    this.__hdpath = hdpath;
   }
 
-  _createClass(HDWallet, [{
+  _createClass(Wallet, [{
     key: 'hdpath',
     value: function hdpath() {
-      return this._hdpath;
+      return this.__hdpath;
     }
   }, {
-    key: 'mnemonic',
-    value: function mnemonic() {
-      return this._mnemonic;
+    key: 'getAddress',
+    value: function getAddress() {
+      return this.__hdwallet.derivePath(this.__hdpath).getWallet().getAddress();
+    }
+  }, {
+    key: 'getPublicKey',
+    value: function getPublicKey() {
+      return this.__hdwallet.derivePath(this.__hdpath).getWallet().getPublicKey();
+    }
+  }, {
+    key: 'getPrivateKey',
+    value: function getPrivateKey() {
+      return this.__hdwallet.derivePath(this.__hdpath).getWallet().getPrivateKey();
+    }
+  }, {
+    key: 'signTransaction',
+    value: function signTransaction(txParams) {
+      var wallet = this.__hdwallet.derivePath(this.__hdpath).getWallet();
+      txParams.from = txParams.from || '0x' + wallet.getAddress().toString('hex');
+      var tx = new Transaction(txParams);
+      var priv = wallet.getPrivateKey();
+      tx.sign(priv);
+      return tx.serialize();
     }
   }, {
     key: 'derive',
-    value: function derive(idx) {
-      var _this = this;
-
-      var wallet = this._hdwallet.derivePath(this._hdpath + idx).getWallet();
-      wallet.signTransaction = function (txParams) {
-        txParams.from = txParams.from || '0x' + wallet.getAddress().toString('hex');
-        var tx = new Transaction(txParams);
-        var priv = wallet.getPrivateKey();
-        tx.sign(priv);
-        return tx.serialize();
-      };
-      wallet.hdpath = function () {
-        return _this._hdpath + idx;
-      };
-
-      return wallet;
+    value: function derive(hdpath) {
+      if (!hdpath) return this;
+      var clone = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
+      if (/^[0-9]+'?$/.test(hdpath)) {
+        hdpath = '/' + hdpath;
+      }
+      clone.__hdpath = this.__hdpath + hdpath;
+      return clone;
     }
   }]);
 
-  return HDWallet;
+  return Wallet;
 }();
+
+var HDWallet = {
+  fromMnemonic: function fromMnemonic(mnemonic) {
+    var seed = bip39.mnemonicToSeed(mnemonic);
+    return new Wallet(seed);
+  },
+  fromSeed: function fromSeed(seed) {
+    return new Wallet(seed);
+  },
+  DefaultHDPath: 'm/44\'/60\'/0\'/0'
+};
 
 module.exports = HDWallet;

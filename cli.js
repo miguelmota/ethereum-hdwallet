@@ -11,6 +11,7 @@ const cli = meow(`
       -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)
       -r, --range Account Index Range (e.g 1-100)
       -m, --mnemonic Mnemonic
+      -s, --seed Seed in hex format
       -h, --hdpath HD Path
 
     Examples
@@ -21,6 +22,7 @@ ove argue embrace heavy" -r 0-10
       'property',
       'range',
       'mnemonic',
+      'seed',
       'hdpath'
     ],
     number: [
@@ -31,6 +33,7 @@ ove argue embrace heavy" -r 0-10
       p: 'property',
       r: 'range',
       m: 'mnemonic',
+      s: 'seed',
       h: 'hdpath'
     }
   }
@@ -41,7 +44,8 @@ const { flags, input } = cli
 
 const options = {
   mnemonic: flags.mnemonic || flags.m || input[0],
-  hdpath: flags.hdpath || flags.h,
+  seed: flags.seed || flags.s,
+  hdpath: flags.hdpath || flags.h || HDWallet.DefaultHDPath,
   index: flags.index || flags.i,
   range: flags.range || flags.r,
   properties: flags.properties || flags.p
@@ -63,13 +67,13 @@ if (process.stdin) {
   run(options)
 }
 
-function run({mnemonic, index, range, hdpath, properties}) {
-  if (!mnemonic) {
-    console.error('Error: mnemonic is required')
+function run({mnemonic, seed, index, range, hdpath, properties}) {
+  if (!mnemonic && !seed) {
+    console.error('Error: mnemonic or seed is required')
     return
   }
 
-  const hdwallet = new HDWallet(mnemonic, hdpath)
+  const hdwallet = (seed ? HDWallet.fromSeed(Buffer.from(seed, 'hex')) : HDWallet.fromMnemonic(mnemonic)).derive(hdpath)
 
   var start = 0
   var end = 10

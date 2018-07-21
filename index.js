@@ -1,37 +1,58 @@
-var bip39 = require('bip39')
-var hdkey = require('ethereumjs-wallet/hdkey')
-var Transaction = require('ethereumjs-tx')
+const bip39 = require('bip39')
+const hdkey = require('ethereumjs-wallet/hdkey')
+const Transaction = require('ethereumjs-tx')
 
-class HDWallet {
-  constructor(mnemonic, hdpath=`m/44'/60'/0'/0/`) {
-    this._mnemonic = mnemonic
-    this._hdwallet = hdkey.fromMasterSeed(bip39.mnemonicToSeed(mnemonic))
-    this._hdpath = hdpath
+class Wallet {
+  constructor(seed, hdpath='') {
+    this.__hdwallet = hdkey.fromMasterSeed(seed)
+    this.__hdpath = hdpath
   }
 
   hdpath() {
-    return this._hdpath
+    return this.__hdpath
   }
 
-  mnemonic() {
-    return this._mnemonic
+  getAddress() {
+    return this.__hdwallet.derivePath(this.__hdpath).getWallet().getAddress()
   }
 
-  derive(idx) {
-    const wallet = this._hdwallet.derivePath(this._hdpath + idx).getWallet()
-    wallet.signTransaction = (txParams) => {
-      txParams.from = txParams.from || '0x' + wallet.getAddress().toString('hex')
-      const tx = new Transaction(txParams)
-      const priv = wallet.getPrivateKey()
-      tx.sign(priv)
-      return tx.serialize()
+  getPublicKey() {
+    return this.__hdwallet.derivePath(this.__hdpath).getWallet().getPublicKey()
+  }
+
+  getPrivateKey() {
+    return this.__hdwallet.derivePath(this.__hdpath).getWallet().getPrivateKey()
+  }
+
+  signTransaction(txParams) {
+    const wallet = this.__hdwallet.derivePath(this.__hdpath).getWallet()
+    txParams.from = txParams.from || '0x' + wallet.getAddress().toString('hex')
+    const tx = new Transaction(txParams)
+    const priv = wallet.getPrivateKey()
+    tx.sign(priv)
+    return tx.serialize()
+  }
+
+  derive(hdpath) {
+    if (!hdpath) return this
+    const clone = Object.assign( Object.create( Object.getPrototypeOf(this)), this)
+    if (/^[0-9]+'?$/.test(hdpath)) {
+      hdpath = `/${hdpath}`
     }
-    wallet.hdpath = () => {
-      return this._hdpath + idx
-    }
-
-    return wallet
+    clone.__hdpath = this.__hdpath + hdpath
+    return clone
   }
+}
+
+const HDWallet = {
+  fromMnemonic: mnemonic => {
+    const seed = bip39.mnemonicToSeed(mnemonic)
+    return new Wallet(seed)
+  },
+  fromSeed: seed => {
+    return new Wallet(seed)
+  },
+  DefaultHDPath: `m/44'/60'/0'/0`
 }
 
 module.exports = HDWallet

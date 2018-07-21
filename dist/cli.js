@@ -7,14 +7,15 @@ var _require = require('table'),
 var meow = require('meow');
 var HDWallet = require('./index');
 
-var cli = meow('\n    Usage\n  $ ethereum_hdwallet [options]\n\n    Options\n      -i, --index Account Index (e.g. 4)\n      -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)\n      -r, --range Account Index Range (e.g 1-100)\n      -m, --mnemonic Mnemonic\n      -h, --hdpath HD Path\n\n    Examples\n      $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab\nove argue embrace heavy" -r 0-10\n  ', {
-  string: ['property', 'range', 'mnemonic', 'hdpath'],
+var cli = meow('\n    Usage\n  $ ethereum_hdwallet [options]\n\n    Options\n      -i, --index Account Index (e.g. 4)\n      -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)\n      -r, --range Account Index Range (e.g 1-100)\n      -m, --mnemonic Mnemonic\n      -s, --seed Seed in hex format\n      -h, --hdpath HD Path\n\n    Examples\n      $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab\nove argue embrace heavy" -r 0-10\n  ', {
+  string: ['property', 'range', 'mnemonic', 'seed', 'hdpath'],
   number: ['index'],
   alias: {
     i: 'index',
     p: 'property',
     r: 'range',
     m: 'mnemonic',
+    s: 'seed',
     h: 'hdpath'
   }
 });
@@ -26,7 +27,8 @@ var flags = cli.flags,
 
 var options = {
   mnemonic: flags.mnemonic || flags.m || input[0],
-  hdpath: flags.hdpath || flags.h,
+  seed: flags.seed || flags.s,
+  hdpath: flags.hdpath || flags.h || HDWallet.DefaultHDPath,
   index: flags.index || flags.i,
   range: flags.range || flags.r,
   properties: flags.properties || flags.p
@@ -40,7 +42,7 @@ if (process.stdin) {
     content += buf.toString();
   });
   setTimeout(function () {
-    options.mnemonic = (content || options.mnemonic).trim();
+    options.mnemonic = (content || options.mnemonic || '').trim();
     run(options);
     process.exit(0);
   }, 10);
@@ -50,17 +52,18 @@ if (process.stdin) {
 
 function run(_ref) {
   var mnemonic = _ref.mnemonic,
+      seed = _ref.seed,
       index = _ref.index,
       range = _ref.range,
       hdpath = _ref.hdpath,
       properties = _ref.properties;
 
-  if (!mnemonic) {
-    console.error('Error: mnemonic is required');
+  if (!mnemonic && !seed) {
+    console.error('Error: mnemonic or seed is required');
     return;
   }
 
-  var hdwallet = new HDWallet(mnemonic, hdpath);
+  var hdwallet = (seed ? HDWallet.fromSeed(Buffer.from(seed, 'hex')) : HDWallet.fromMnemonic(mnemonic)).derive(hdpath);
 
   var start = 0;
   var end = 10;
