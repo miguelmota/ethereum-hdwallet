@@ -3,16 +3,8 @@ language: node_js
 node_js:
 - "8"
 
-cache:
-  yarn: true
-  directories:
-  - node_modules/
-
 before_script:
   - npm install
 
 script:
-  - npm test
-
-after_success:
-  - 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'
+  - node_modules/nyc/bin/nyc.js npm test && node_modules/nyc/bin/nyc.js report --reporter=text-lcov | ./node_modules/.bin/coveralls

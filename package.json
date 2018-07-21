@@ -1,13 +1,13 @@
 {
   "name": "ethereum-hdwallet",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "ethereum-hdwallet",
   "main": "dist/index.js",
   "bin": {
     "ethereum_hdwallet": "bin/ethereum_hdwallet"
   },
   "scripts": {
-    "test": "tape ./test/index.js && istanbul report text-summary lcov",
+    "test": "tape ./test/index.js",
     "build": "babel index.js --presets babel-preset-es2015 --out-dir dist/",
     "build:cli": "babel cli.js --presets babel-preset-es2015 --out-dir dist/"
   },
@@ -57,6 +57,7 @@
     "browserify": "^16.1.1",
     "coveralls": "^3.0.2",
     "istanbul": "^0.4.5",
+    "nyc": "^12.0.2",
     "tape": "^4.6.3"
   }
 }
