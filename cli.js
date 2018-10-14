@@ -8,11 +8,11 @@ const cli = meow(`
 
     Options
       -i, --index Account Index (e.g. 4)
-      -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)
+      -c, --columns Columns to display (e.g. address, publickey, privatekey, hdpath)
       -r, --range Account Index Range (e.g 1-100)
       -m, --mnemonic Mnemonic
       -s, --seed Seed in hex format
-      -h, --hdpath HD Path
+      -p, --hdpath HD Path
 
     Examples
       $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab
@@ -30,11 +30,11 @@ ove argue embrace heavy" -r 0-10
     ],
     alias: {
       i: 'index',
-      p: 'property',
+      c: 'columns',
       r: 'range',
       m: 'mnemonic',
       s: 'seed',
-      h: 'hdpath'
+      p: 'hdpath'
     }
   }
 )
@@ -45,10 +45,10 @@ const { flags, input } = cli
 const options = {
   mnemonic: flags.mnemonic || flags.m || input[0],
   seed: flags.seed || flags.s,
-  hdpath: flags.hdpath || flags.h || HDWallet.DefaultHDPath,
+  hdpath: flags.hdpath || flags.p || HDWallet.DefaultHDPath,
   index: flags.index || flags.i,
   range: flags.range || flags.r,
-  properties: flags.properties || flags.p
+  columns: flags.columns || flags.c
 }
 
 if (process.stdin) {
@@ -67,7 +67,7 @@ if (process.stdin) {
   run(options)
 }
 
-function run({mnemonic, seed, index, range, hdpath, properties}) {
+function run({mnemonic, seed, index, range, hdpath, columns}) {
   if (!mnemonic && !seed) {
     console.error('Error: mnemonic or seed is required')
     return
@@ -114,7 +114,7 @@ function run({mnemonic, seed, index, range, hdpath, properties}) {
     }
   }
 
-  const propertiesList = (properties || 'address').split(',').map(x => x.trim().toLowerCase())
+  const columnsList = (columns || 'address').split(',').map(x => x.trim().toLowerCase())
 
   const headerKeys = {
     address: 'address',
@@ -125,8 +125,8 @@ function run({mnemonic, seed, index, range, hdpath, properties}) {
 
   const props = []
 
-  for (var i = 0; i < propertiesList.length; i++) {
-    const property = propertiesList[i]
+  for (var i = 0; i < columnsList.length; i++) {
+    const property = columnsList[i]
     var prop = null
     if (/address|(public.*address)|addr/.test(property)) {
       prop = 'address'

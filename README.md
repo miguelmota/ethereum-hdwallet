@@ -1,6 +1,6 @@
 # ethereum-hdwallet
 
-> Ethereum HD Wallet derivations from mnemonic
+> CLI and Node.js library for Ethereum HD Wallet derivations from mnemonic
 
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE.md) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet) [![Coverage Status](https://coveralls.io/repos/github/miguelmota/ethereum-hdwallet/badge.svg?branch=master)](https://coveralls.io/github/miguelmota/ethereum-hdwallet?branch=master)
 
@@ -80,11 +80,11 @@ $ ethereum_hdwallet [options]
 
   Options
     -i, --index Account Index (e.g. 4)
-    -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)
+    -c, --columns Columns to display (e.g. address, publickey, privatekey, hdpath)
     -r, --range Account Index Range (e.g 1-100)
     -m, --mnemonic Mnemonic
     -s, --seed Seed in hex format
-    -h, --hdpath HD Path
+    -p, --hdpath HD Path
 
   Examples
     $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab
@@ -121,7 +121,7 @@ account address
 Display the private keys of accounts:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10 3 -p privatekey
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10 3 -c privatekey
 
 account private key
 5       1a69b812ca32e38bcac5197a63f6c1a1fcb6ac202e524382565cef16f1b3c84c
@@ -135,7 +135,7 @@ account private key
 Display the HD path of the account:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -p hdpath
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -i 3 -c hdpath
 
 account hd path
 3       m/44'/60'/0'/0/3
@@ -144,7 +144,7 @@ account hd path
 Use a custom HD path:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -h "m/44'/60'/20'/0/0" -r 0-3
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -p "m/44'/60'/20'/0/0" -r 0-3
 
 account address
 0       0xba59f66b853f1acb242bcc57ef188754fc79434b
@@ -153,10 +153,10 @@ account address
 3       0xce8bf9293cf5c4e9ecb50aa8f9e42adf568ae356
 ```
 
-Display multiple properties:
+Display multiple columns:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -p address,hdpath -r 0-5
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -c address,hdpath -r 0-5
 
 account address                                    hd path
 0       0xc49926c4124cee1cba0ea94ea31a6c12318df947 m/44'/60'/0'/0/0

@@ -7,16 +7,16 @@ var _require = require('table'),
 var meow = require('meow');
 var HDWallet = require('./index');
 
-var cli = meow('\n    Usage\n  $ ethereum_hdwallet [options]\n\n    Options\n      -i, --index Account Index (e.g. 4)\n      -p, --properties Properties to display (e.g. address, publickey, privatekey, hdpath)\n      -r, --range Account Index Range (e.g 1-100)\n      -m, --mnemonic Mnemonic\n      -s, --seed Seed in hex format\n      -h, --hdpath HD Path\n\n    Examples\n      $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab\nove argue embrace heavy" -r 0-10\n  ', {
+var cli = meow('\n    Usage\n  $ ethereum_hdwallet [options]\n\n    Options\n      -i, --index Account Index (e.g. 4)\n      -c, --columns Columns to display (e.g. address, publickey, privatekey, hdpath)\n      -r, --range Account Index Range (e.g 1-100)\n      -m, --mnemonic Mnemonic\n      -s, --seed Seed in hex format\n      -p, --hdpath HD Path\n\n    Examples\n      $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab\nove argue embrace heavy" -r 0-10\n  ', {
   string: ['property', 'range', 'mnemonic', 'seed', 'hdpath'],
   number: ['index'],
   alias: {
     i: 'index',
-    p: 'property',
+    c: 'columns',
     r: 'range',
     m: 'mnemonic',
     s: 'seed',
-    h: 'hdpath'
+    p: 'hdpath'
   }
 });
 
@@ -28,10 +28,10 @@ var flags = cli.flags,
 var options = {
   mnemonic: flags.mnemonic || flags.m || input[0],
   seed: flags.seed || flags.s,
-  hdpath: flags.hdpath || flags.h || HDWallet.DefaultHDPath,
+  hdpath: flags.hdpath || flags.p || HDWallet.DefaultHDPath,
   index: flags.index || flags.i,
   range: flags.range || flags.r,
-  properties: flags.properties || flags.p
+  columns: flags.columns || flags.c
 };
 
 if (process.stdin) {
@@ -56,7 +56,7 @@ function run(_ref) {
       index = _ref.index,
       range = _ref.range,
       hdpath = _ref.hdpath,
-      properties = _ref.properties;
+      columns = _ref.columns;
 
   if (!mnemonic && !seed) {
     console.error('Error: mnemonic or seed is required');
@@ -104,7 +104,7 @@ function run(_ref) {
     }
   }
 
-  var propertiesList = (properties || 'address').split(',').map(function (x) {
+  var columnsList = (columns || 'address').split(',').map(function (x) {
     return x.trim().toLowerCase();
   });
 
@@ -117,8 +117,8 @@ function run(_ref) {
 
   var props = [];
 
-  for (var i = 0; i < propertiesList.length; i++) {
-    var property = propertiesList[i];
+  for (var i = 0; i < columnsList.length; i++) {
+    var property = columnsList[i];
     var prop = null;
     if (/address|(public.*address)|addr/.test(property)) {
       prop = 'address';
