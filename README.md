@@ -1,8 +1,16 @@
+<h3 align="center">
+  <br />
+  <img src="https://user-images.githubusercontent.com/168240/51435542-37197780-1c2e-11e9-833e-a8d003759100.png" alt="logo" width="600" />
+  <br />
+  <br />
+  <br />
+</h3>
+
 # ethereum-hdwallet
 
 > CLI and Node.js library for Ethereum HD Wallet derivations from mnemonic
 
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE.md) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet) [![Coverage Status](https://coveralls.io/repos/github/miguelmota/ethereum-hdwallet/badge.svg?branch=master)](https://coveralls.io/github/miguelmota/ethereum-hdwallet?branch=master)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet) [![Coverage Status](https://coveralls.io/repos/github/miguelmota/ethereum-hdwallet/badge.svg?branch=master)](https://coveralls.io/github/miguelmota/ethereum-hdwallet?branch=master) [![dependencies Status](https://david-dm.org/miguelmota/ethereum-hdwallet/status.svg)](https://david-dm.org/miguelmota/ethereum-hdwallet) [![NPM version](https://badge.fury.io/js/ethereum-hdwallet.svg)](http://badge.fury.io/js/ethereum-hdwallet)
 
 ## Install
 
@@ -10,7 +18,7 @@
 npm install ethereum-hdwallet
 ```
 
-## Getting Started
+## Getting started
 
 Creating a new HD wallet from a mnemonic:
 
@@ -192,4 +200,4 @@ npm test
 
 ## License
 
-MIT
+[MIT](LICENSE)
