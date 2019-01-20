@@ -1,6 +1,6 @@
 {
   "name": "ethereum-hdwallet",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "ethereum-hdwallet",
   "main": "dist/index.js",
   "bin": {
@@ -27,7 +27,7 @@
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/miguelmota/ethereum-hdwallet/blob/master/LICENSE.md"
+    "url": "https://github.com/miguelmota/ethereum-hdwallet/blob/master/LICENSE"
   },
   "dependencies": {
     "bip39": "^2.5.0",
