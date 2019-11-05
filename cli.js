@@ -1,5 +1,6 @@
 const { table, getBorderCharacters } = require('table')
 const meow = require('meow')
+const { toChecksumAddress } = require('ethereum-checksum-address')
 const HDWallet = require('./index')
 
 const cli = meow(`
@@ -158,7 +159,7 @@ function run({mnemonic, seed, index, range, hdpath, columns}) {
       const prop = props[j]
       var value = null
       if (prop === 'address') {
-        value = '0x' + wallet.getAddress().toString('hex')
+        value = toChecksumAddress('0x' + wallet.getAddress().toString('hex'))
       } else if (prop === 'private') {
         value = wallet.getPrivateKey().toString('hex')
       } else if (prop === 'public') {

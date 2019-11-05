@@ -5,6 +5,10 @@ var _require = require('table'),
     getBorderCharacters = _require.getBorderCharacters;
 
 var meow = require('meow');
+
+var _require2 = require('ethereum-checksum-address'),
+    toChecksumAddress = _require2.toChecksumAddress;
+
 var HDWallet = require('./index');
 
 var cli = meow('\n    Usage\n  $ ethereum_hdwallet [options]\n\n    Options\n      -i, --index Account Index (e.g. 4)\n      -c, --columns Columns to display (e.g. address, publickey, privatekey, hdpath)\n      -r, --range Account Index Range (e.g 1-100)\n      -m, --mnemonic Mnemonic\n      -s, --seed Seed in hex format\n      -p, --hdpath HD Path\n\n    Examples\n      $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab\nove argue embrace heavy" -r 0-10\n  ', {
@@ -150,7 +154,7 @@ function run(_ref) {
       var _prop = props[j];
       var value = null;
       if (_prop === 'address') {
-        value = '0x' + wallet.getAddress().toString('hex');
+        value = toChecksumAddress('0x' + wallet.getAddress().toString('hex'));
       } else if (_prop === 'private') {
         value = wallet.getPrivateKey().toString('hex');
       } else if (_prop === 'public') {

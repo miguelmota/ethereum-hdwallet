@@ -34,7 +34,7 @@ class Wallet {
   }
 
   derive(hdpath) {
-    if (!hdpath) return this
+    if (typeof hdpath === undefined) return this
     const clone = Object.assign( Object.create( Object.getPrototypeOf(this)), this)
     if (/^[0-9]+'?$/.test(hdpath)) {
       hdpath = `/${hdpath}`
