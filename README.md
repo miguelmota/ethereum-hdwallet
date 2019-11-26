@@ -10,7 +10,10 @@
 
 > CLI and Node.js library for Ethereum HD Wallet derivations from mnemonic
 
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE) [![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet) [![Coverage Status](https://coveralls.io/repos/github/miguelmota/ethereum-hdwallet/badge.svg?branch=master)](https://coveralls.io/github/miguelmota/ethereum-hdwallet?branch=master) [![dependencies Status](https://david-dm.org/miguelmota/ethereum-hdwallet/status.svg)](https://david-dm.org/miguelmota/ethereum-hdwallet) [![NPM version](https://badge.fury.io/js/ethereum-hdwallet.svg)](http://badge.fury.io/js/ethereum-hdwallet)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/miguelmota/ethereum-hdwallet/master/LICENSE)
+[![Build Status](https://travis-ci.org/miguelmota/ethereum-hdwallet.svg?branch=master)](https://travis-ci.org/miguelmota/ethereum-hdwallet)
+[![Coverage Status](https://coveralls.io/repos/github/miguelmota/ethereum-hdwallet/badge.svg?branch=master)](https://coveralls.io/github/miguelmota/ethereum-hdwallet?branch=master) [![dependencies Status](https://david-dm.org/miguelmota/ethereum-hdwallet/status.svg)](https://david-dm.org/miguelmota/ethereum-hdwallet)
+[![NPM version](https://badge.fury.io/js/ethereum-hdwallet.svg)](http://badge.fury.io/js/ethereum-hdwallet)
 
 ## Install
 
@@ -129,7 +132,7 @@ account address
 Display the private keys of accounts:
 
 ```bash
-$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10 3 -c privatekey
+$ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health above argue embrace heavy" -r 5-10 -c privatekey
 
 account private key
 5       1a69b812ca32e38bcac5197a63f6c1a1fcb6ac202e524382565cef16f1b3c84c
