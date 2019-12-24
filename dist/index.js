@@ -85,7 +85,7 @@ var HDWallet = {
       value = mnemonic;
     }
 
-    var seed = bip39.mnemonicToSeed(value.trim());
+    var seed = bip39.mnemonicToSeedSync(value.trim());
     return new Wallet(seed);
   },
   fromSeed: function fromSeed(seed) {

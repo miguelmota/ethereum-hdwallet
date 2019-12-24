@@ -63,7 +63,7 @@ const HDWallet = {
       value = mnemonic
     }
 
-    const seed = bip39.mnemonicToSeed(value.trim())
+    const seed = bip39.mnemonicToSeedSync(value.trim())
     return new Wallet(seed)
   },
   fromSeed: (seed) => {
