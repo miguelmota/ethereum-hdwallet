@@ -19,25 +19,25 @@ const cli = meow(`
       $ ethereum_hdwallet -m "tag volcano eight thank tide danger coast health ab
 ove argue embrace heavy" -r 0-10
   `, {
-    string: [
-      'property',
-      'range',
-      'mnemonic',
-      'seed',
-      'hdpath'
-    ],
-    number: [
-      'index'
-    ],
-    alias: {
-      i: 'index',
-      c: 'columns',
-      r: 'range',
-      m: 'mnemonic',
-      s: 'seed',
-      p: 'hdpath'
-    }
+  string: [
+    'property',
+    'range',
+    'mnemonic',
+    'seed',
+    'hdpath'
+  ],
+  number: [
+    'index'
+  ],
+  alias: {
+    i: 'index',
+    c: 'columns',
+    r: 'range',
+    m: 'mnemonic',
+    s: 'seed',
+    p: 'hdpath'
   }
+}
 )
 
 const args = process.argv
@@ -68,7 +68,7 @@ if (process.stdin) {
   run(options)
 }
 
-function run({mnemonic, seed, index, range, hdpath, columns}) {
+function run ({ mnemonic, seed, index, range, hdpath, columns }) {
   if (!mnemonic && !seed) {
     console.error('Error: mnemonic or seed is required')
     return
@@ -96,8 +96,8 @@ function run({mnemonic, seed, index, range, hdpath, columns}) {
     }
   } else if (range) {
     const parts = range.split('-')
-    start = (parts[0]|0)
-    end = (parts[1]|0)+1
+    start = (parts[0] | 0)
+    end = (parts[1] | 0) + 1
     if (start < 0) {
       start = 0
     }

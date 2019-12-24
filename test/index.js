@@ -5,7 +5,7 @@ test('hdwallet', t => {
   t.plan(12)
 
   const mnemonic = 'tag volcano eight thank tide danger coast health above argue embrace heavy'
-  const hdwallet = HDWallet.fromMnemonic(mnemonic)
+  const hdwallet = HDWallet.fromMnemonic(Buffer.from(mnemonic))
   t.equal(hdwallet.hdpath(), '')
   t.equal(hdwallet.derive(`m/44'/60'/0'/0`).hdpath(), `m/44'/60'/0'/0`)
   t.equal(hdwallet.derive(`m/44'/60'/0'/0/0`).getAddress().toString('hex'), 'c49926c4124cee1cba0ea94ea31a6c12318df947')

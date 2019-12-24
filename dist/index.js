@@ -9,6 +9,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var bip39 = require('bip39');
 var hdkey = require('ethereumjs-wallet/hdkey');
 var Transaction = require('ethereumjs-tx');
+var isBuffer = require('is-buffer');
 
 var Wallet = function () {
   function Wallet(seed) {
@@ -16,7 +17,16 @@ var Wallet = function () {
 
     _classCallCheck(this, Wallet);
 
-    this.__hdwallet = hdkey.fromMasterSeed(seed);
+    var buf = null;
+    if (typeof seed === 'string') {
+      buf = Buffer.from(seed);
+    } else if (isBuffer(seed)) {
+      buf = seed;
+    } else {
+      throw new Error('Seed must be Buffer or string');
+    }
+
+    this.__hdwallet = hdkey.fromMasterSeed(buf);
     this.__hdpath = hdpath;
   }
 
@@ -68,7 +78,14 @@ var Wallet = function () {
 
 var HDWallet = {
   fromMnemonic: function fromMnemonic(mnemonic) {
-    var seed = bip39.mnemonicToSeed(mnemonic);
+    var value = null;
+    if (isBuffer(mnemonic)) {
+      value = mnemonic.toString();
+    } else {
+      value = mnemonic;
+    }
+
+    var seed = bip39.mnemonicToSeed(value);
     return new Wallet(seed);
   },
   fromSeed: function fromSeed(seed) {
