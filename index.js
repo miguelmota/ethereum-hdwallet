@@ -5,16 +5,16 @@ const isBuffer = require('is-buffer')
 
 class Wallet {
   constructor (seed, hdpath = '') {
-    let buf = null
+    let value = null
     if (typeof seed === 'string') {
-      buf = Buffer.from(seed)
+      value = Buffer.from(seed)
     } else if (isBuffer(seed)) {
-      buf = seed
+      value = seed
     } else {
       throw new Error('Seed must be Buffer or string')
     }
 
-    this.__hdwallet = hdkey.fromMasterSeed(buf)
+    this.__hdwallet = hdkey.fromMasterSeed(value)
     this.__hdpath = hdpath
   }
 
@@ -63,13 +63,13 @@ const HDWallet = {
       value = mnemonic
     }
 
-    const seed = bip39.mnemonicToSeed(value)
+    const seed = bip39.mnemonicToSeed(value.trim())
     return new Wallet(seed)
   },
   fromSeed: (seed) => {
     return new Wallet(seed)
   },
-  DefaultHDPath: `m/44'/60'/0'/0`
+  DefaultHDPath: 'm/44\'/60\'/0\'/0'
 }
 
 module.exports = HDWallet

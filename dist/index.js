@@ -17,16 +17,16 @@ var Wallet = function () {
 
     _classCallCheck(this, Wallet);
 
-    var buf = null;
+    var value = null;
     if (typeof seed === 'string') {
-      buf = Buffer.from(seed);
+      value = Buffer.from(seed);
     } else if (isBuffer(seed)) {
-      buf = seed;
+      value = seed;
     } else {
       throw new Error('Seed must be Buffer or string');
     }
 
-    this.__hdwallet = hdkey.fromMasterSeed(buf);
+    this.__hdwallet = hdkey.fromMasterSeed(value);
     this.__hdpath = hdpath;
   }
 
@@ -85,7 +85,7 @@ var HDWallet = {
       value = mnemonic;
     }
 
-    var seed = bip39.mnemonicToSeed(value);
+    var seed = bip39.mnemonicToSeed(value.trim());
     return new Wallet(seed);
   },
   fromSeed: function fromSeed(seed) {
