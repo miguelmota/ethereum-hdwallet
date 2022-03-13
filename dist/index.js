@@ -9,6 +9,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var bip39 = require('bip39');
 var hdkey = require('ethereumjs-wallet/hdkey');
 var Transaction = require('ethereumjs-tx');
+var EthCrypto = require('eth-crypto');
 var isBuffer = require('is-buffer');
 
 var Wallet = function () {
@@ -43,7 +44,13 @@ var Wallet = function () {
   }, {
     key: 'getPublicKey',
     value: function getPublicKey() {
-      return this.__hdwallet.derivePath(this.__hdpath).getWallet().getPublicKey();
+      var compress = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      var uncompressed = this.__hdwallet.derivePath(this.__hdpath).getWallet().getPublicKey();
+      if (compress) {
+        return Buffer.from(EthCrypto.publicKey.compress(uncompressed.toString('hex')), 'hex');
+      }
+      return uncompressed;
     }
   }, {
     key: 'getPrivateKey',

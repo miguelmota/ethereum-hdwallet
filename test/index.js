@@ -2,7 +2,7 @@ const test = require('tape')
 const HDWallet = require('../')
 
 test('hdwallet', t => {
-  t.plan(12)
+  t.plan(13)
 
   const mnemonic = 'tag volcano eight thank tide danger coast health above argue embrace heavy'
   const hdwallet = HDWallet.fromMnemonic(mnemonic)
@@ -10,6 +10,7 @@ test('hdwallet', t => {
   t.equal(hdwallet.derive(`m/44'/60'/0'/0`).hdpath(), `m/44'/60'/0'/0`)
   t.equal(hdwallet.derive(`m/44'/60'/0'/0/0`).getAddress().toString('hex'), 'c49926c4124cee1cba0ea94ea31a6c12318df947')
   t.equal(hdwallet.derive(`m/44'/60'/0'/0/0`).getPublicKey().toString('hex'), '6005c86a6718f66221713a77073c41291cc3abbfcd03aa4955e9b2b50dbf7f9b6672dad0d46ade61e382f79888a73ea7899d9419becf1d6c9ec2087c1188fa18')
+  t.equal(hdwallet.derive(`m/44'/60'/0'/0/0`).getPublicKey(true).toString('hex'), '026005c86a6718f66221713a77073c41291cc3abbfcd03aa4955e9b2b50dbf7f9b')
   t.equal(hdwallet.derive(`m/44'/60'/0'/0/0`).getPrivateKey().toString('hex'), '63e21d10fd50155dbba0e7d3f7431a400b84b4c2ac1ee38872f82448fe3ecfb9')
   t.equal(hdwallet.derive(`m/44'/60'/0'/0/0`).getAddress().toString('hex'), 'c49926c4124cee1cba0ea94ea31a6c12318df947')
   t.equal(hdwallet.derive(`m/44'/60'/0'/0`).derive().getAddress().toString('hex'), 'af1c991f6068ac832ec60a8557ef1c7d8b9bccd6')

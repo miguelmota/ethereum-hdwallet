@@ -1,6 +1,7 @@
 const bip39 = require('bip39')
 const hdkey = require('ethereumjs-wallet/hdkey')
 const Transaction = require('ethereumjs-tx')
+const EthCrypto = require('eth-crypto')
 const isBuffer = require('is-buffer')
 
 class Wallet {
@@ -26,8 +27,12 @@ class Wallet {
     return this.__hdwallet.derivePath(this.__hdpath).getWallet().getAddress()
   }
 
-  getPublicKey () {
-    return this.__hdwallet.derivePath(this.__hdpath).getWallet().getPublicKey()
+  getPublicKey (compress = false) {
+    const uncompressed = this.__hdwallet.derivePath(this.__hdpath).getWallet().getPublicKey()
+    if (compress) {
+      return Buffer.from(EthCrypto.publicKey.compress(uncompressed.toString('hex')), 'hex')
+    }
+    return uncompressed
   }
 
   getPrivateKey () {
