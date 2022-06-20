@@ -77,4 +77,8 @@ const HDWallet = {
   DefaultHDPath: 'm/44\'/60\'/0\'/0'
 }
 
+if (typeof window !== 'undefined') {
+  window.HDWallet = HDWallet
+}
+
 module.exports = HDWallet

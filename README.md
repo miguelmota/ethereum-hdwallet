@@ -21,6 +21,14 @@
 npm install ethereum-hdwallet
 ```
 
+### CDN
+
+Available on [jsDelivr](https://www.jsdelivr.com/) CDN:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/ethereum-hdwallet@latest/ethereum-hdwallet.js"></script>
+```
+
 ## Getting started
 
 Creating a new HD wallet from a mnemonic:
