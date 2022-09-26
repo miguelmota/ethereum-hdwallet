@@ -27,8 +27,7 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'npm'
       - name: Upgrade NPM
-        run: npm install -g npm
-        run: npm ci
+        run: npm install -g npm && npm ci
 
       - name: Run audit 👀
         run: npm audit --prod
